@@ -40,17 +40,43 @@ int main(int argc, const char * argv[]) {
      4.4.3 printf()的转换说明修饰符
      4.4.4 转换说明的意义
      4.4.5 使用scanf()
+     
+     4.4.6 printf()和scanf()的*修饰符
+     
+     4.4.7 printf()的用法提示
+     
+     4.5 关键概念
+     
+     4.6 小结 宏(明示常量、符号常量)
      */
     
     /* ----Code----*/
+    // 4.17 -- 跳过输入中的前两个整数
+    int n;
+    printf("Please enter three integers:\n");
+    scanf("%*d %*d %d",&n);
+    printf("The last integer was %d\n",n);
+    
+    // 4.16 -- 使用变宽输出字段
+    /*unsigned width,precision;
+    int number = 256;
+    double weight = 242.5;
+    printf("Enter a field width:\n");
+    scanf("%d",&width);
+    printf("The number is : %*d:\n",width,number);
+    printf("Now enter a width and a precision:\n");
+    scanf("%d   %d", &width, &precision);
+    printf("Weight = %*.*f \n",width,precision,weight);
+    printf("Done!\n");*/
+    
     // 4.15 -- 何时使用&
-    int age;
+    /*int age;
     float assets;
     char pet[30];
     printf("Enter your age, assets, and favorite pet.\n");
     scanf("%d %f",&age,&assets);
     scanf("%s",pet);
-    printf("%d $%.2f %s\n",age,assets,pet);
+    printf("%d $%.2f %s\n",age,assets,pet);*/
     
     // 4.14
     /*printf("Here's one way to print a ");
