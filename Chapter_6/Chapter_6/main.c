@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <math.h>
 
+#define ROWS 6
+#define CHARS 6
+
 int main(int argc, const char * argv[]) {
     
     /*--摘要--
@@ -29,12 +32,131 @@ int main(int argc, const char * argv[]) {
      6.3.2 其他真值
      6.3.3 真值的问题
      6.3.4 新的_Bool类型
+     6.3.5 优先级和关系运算符
+     
+     6.4 不确定循环和计数循环
+     
+     6.5 for循环
+     6.5.1 利用for的灵活性
+     
+     6.6 其他赋值运算符 +=、-=、*=、/=、%=
+     
+     6.7 逗号运算符
+     6.7.1 当Zeno遇到for循环
+     
+     6.8 出口条件循环： do while
+     
+     6.9 如何选择循环
+     
+     6.10 嵌套循环
+     6.10.1 程序分析
+     6.10.2 嵌套变式
+     
+     6.11 数组简介
      */
     
     /*--Code--*/
     
+    // 6.18 依赖外部循环的嵌套循环
+    int row;
+    char ch;
+    for (row = 0; row < ROWS; row++) {
+        for (ch = ('A'+row); ch < ('A' + CHARS); ch++)
+            printf("%c", ch);
+        printf("\n");
+    }
+    
+    // 6.17 -- 嵌套循环
+    /*int row;
+    char ch;
+    for (row = 0; row < ROWS; row++) {
+        for (ch = 'A'; ch < 'A'+CHARS; ch++)
+            printf("%c", ch);
+        printf("\n");
+    }*/
+    
+    // 6.16
+    /*const int secret_code = 13;
+    int code_entered;
+    printf("To enter the triskaidekaphobia therapy club,\n");
+    printf("please enter the secret code number: ");
+    scanf("%d", &code_entered);
+    while (code_entered != secret_code) {
+        printf("To enter the triskaidekaphobia therapy club,\n");
+        printf("please enter the secret code number: ");
+        scanf("%d", &code_entered);
+    }
+    printf("Congratulations! You are cured!\n");*/
+    
+    // 6.15 -- 出口条件循环
+    /*const int secret_code = 13;
+    int code_entered;
+    do {
+        printf("To enter the triskaidekaphobia therapy club,\n");
+        printf("please enter the secret code number: ");
+        scanf("%d", &code_entered);
+    } while (code_entered != secret_code);
+    printf("Congratulations! You are cured!\n");*/
+    
+    // 6.14 -- 求序列的和
+    /*int t_ct;
+    double time, power_of_2;
+    int limit;
+    printf("Enter the number of term you want: ");
+    scanf("%d", &limit);
+    for (time = 0, power_of_2 = 1, t_ct = 1; t_ct <= limit; t_ct++, power_of_2 *= 2.0) {
+        time += 1.0/power_of_2;
+        printf("time = %f when terms = %d.\n", time, t_ct);
+    }*/
+    
+    // 6.13 -- 一类邮资
+    /*const int FIRST_OZ = 46;
+    const int NEXT_OZ = 20;
+    int ounces, cost;
+    printf(" ounces cost\n");
+    for (ounces = 1, cost = FIRST_OZ; ounces <= 16; ounces++, cost += NEXT_OZ) {
+        printf("%5d   $%4.2f\n", ounces, cost/100.0);
+    }*/
+    
+    // for_show
+    /*int num = 0;
+    for (printf("Keep entering numbers!\n"); num != 6; ) {
+        scanf("%d", &num);
+    }
+    printf("That's the one I want!\n");*/
+    
+    // for_none
+    /*int ans, n;
+    ans = 2;
+    for (n = 3; ans <= 25; ) {
+        printf("n = %d\n", n);
+        ans = ans*n;
+        printf("n = %d; ans = %d.\n", n, ans);
+    }*/
+    
+    // 6.12 -- 使用for循环创建一个立方表
+    /*int num;
+    printf("    n   n cubed\n");
+    for (num = 1; num <= 6; num++)
+        printf("%5d %5d\n", num, num*num*num);*/
+    
+    // 6.11 -- 使用for循环的计数循环
+    /*const int NUMBER = 22;
+    int count;
+    for (count = 1; count <= NUMBER; count++) {
+        printf("Be my Valentine!\n");
+    }*/
+    
+    // 6.10 -- 一个计数循环
+    /*const int NUMBER = 22;
+    int count = 1;
+    while (count <= NUMBER) {
+        printf("Be my Valentine!\n");
+        count++;
+    }*/
+    
     // 6.9 -- 使用_Bool类型的变量
-    long num;
+    /*long num;
     long sum = 0L;
     _Bool input_is_good;
     printf("Please enter an integer to be summed ");
@@ -45,7 +167,7 @@ int main(int argc, const char * argv[]) {
         printf("Please enter next integer (q to quit): ");
         input_is_good = (scanf("%ld", &num) == 1);
     }
-    printf("Those integers sum to %ld.\n", sum);
+    printf("Those integers sum to %ld.\n", sum);*/
     
     // 赋值语句的返回值
     /*int x;
