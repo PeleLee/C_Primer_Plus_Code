@@ -12,6 +12,11 @@
 #define ROWS 6
 #define CHARS 6
 
+#define SIZE 10
+#define PAR 72
+
+double power(double n, int p);
+
 int main(int argc, const char * argv[]) {
     
     /*--摘要--
@@ -53,18 +58,56 @@ int main(int argc, const char * argv[]) {
      6.10.2 嵌套变式
      
      6.11 数组简介
+     6.11.1 在for循环中使用数组
+     
+     6.12 使用函数返回值的循环示例
+     6.12.1 程序分析
+     6.12.2 使用带有返回值的函数
+     
+     6.13 关键概念
+     
+     6.14 本章小结
      */
     
     /*--Code--*/
     
+    // 6.20 -- 计算数的整数幂
+    double x, xpow;
+    int exp;
+    printf("Enter a number and the positive integer power");
+    printf(" to which\nthe number will be raised.Enter q");
+    printf(" to quit.\n");
+    while (scanf("%lf%d", &x, &exp) == 2) {
+        xpow = power(x, exp);
+        printf("%.3g to the power %d is %.5g\n", x, exp, xpow);
+        printf("Enter next pair of numbers or q to quit.\n");
+    }
+    printf("Hope you enjoyed this power trip -- bye!\n");
+    
+    // 6.19
+    /*int index, score[SIZE];
+    int sum = 0;
+    float average;
+    printf("Enter %d golf scores:\n", SIZE);
+    for (index = 0; index < SIZE; index++)
+        scanf("%d", &score[index]);
+    printf("The scores read in are as follows:\n");
+    for (index = 0; index < SIZE; index++)
+        printf("%5d",score[index]);
+    for (index = 0; index < SIZE; index++)
+        sum += score[index];
+    average = (float)sum/SIZE;
+    printf("\nSum of scores = %d, average = %.2f\n", sum, average);
+    printf("That's a handiap of %.0f.\n", average-PAR);*/
+    
     // 6.18 依赖外部循环的嵌套循环
-    int row;
+    /*int row;
     char ch;
     for (row = 0; row < ROWS; row++) {
         for (ch = ('A'+row); ch < ('A' + CHARS); ch++)
             printf("%c", ch);
         printf("\n");
-    }
+    }*/
     
     // 6.17 -- 嵌套循环
     /*int row;
@@ -261,4 +304,13 @@ int main(int argc, const char * argv[]) {
     printf("Those integers sum to %ld.\n", sum);*/
     
     return 0;
+}
+
+double power(double n, int p) {
+    double pow = 1;
+    int i;
+    for (i = 1; i <= p; i++) {
+        pow *= n;
+    }
+    return pow;
 }
