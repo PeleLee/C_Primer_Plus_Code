@@ -55,9 +55,104 @@ int main(int argc, const char * argv[]) {
      7.5 条件运算符:?:
      
      7.6 循环辅助: continue和break
+     7.6.2 break语句
+     
+     7.7 多种选择:switch和break
+     7.7.1 switch语句
+     7.7.2 只读每行的首字符
+     7.7.3 多重标签
+     7.7.4 switch和if else
+     
+     7.8 goto语句
+     7.8.1 避免使用goto
+     
+     7.9 关键概念
+     
+     7.10 本章小结
      */
     
     /* --Code-- */
+    
+    // 7.12
+    /*char ch;
+    int a_ct, e_ct, i_ct, o_ct, u_ct;
+    a_ct = e_ct = i_ct = o_ct = u_ct = 0;
+    printf("Enter some text; enter # to quit.\n");
+    while ((ch = getchar()) != '#') {
+        switch (ch) {
+            case 'a':
+            case 'A':
+                a_ct++;
+                break;
+            case 'e':
+            case 'E':
+                e_ct++;
+                break;
+            case 'i':
+            case 'I':
+                i_ct++;
+                break;
+            case 'o':
+            case 'O':
+                o_ct++;
+                break;
+            case 'u':
+            case 'U':
+                u_ct++;
+                break;
+            default:
+                break;
+        }
+    }
+    printf("number of vowels: A E I O U\n");
+    printf("    %4d %4d %4d %4d %4d \n", a_ct, e_ct, i_ct, o_ct, u_ct);*/
+    
+    // 7.11
+    /*char ch;
+    printf("Give me a letter of the alphabet, and I will give");
+    printf("an animal name \n beginning with that letter.\n");
+    printf("Please type in a letter; type # to end my act.\n");
+    while ((ch = getchar()) != '#') {
+        if ('\n' == ch) {
+            continue;
+        }
+        if (islower(ch)) {
+            switch (ch) {
+                case 'a':
+                    printf("argali, a wild sheep of Asia \n");
+                    break;
+                case 'b':
+                    printf("babirusa, a wild pig of Malay \n");
+                    break;
+                case 'c':
+                    printf("coati, racoonlike mammal \n");
+                default:
+                    printf("That's a stumper! \n");
+            }
+        }
+        else {
+            printf("I recognize only lowercase letters. \n");
+        }
+        while (getchar() != '\n') {
+            continue;
+        }
+        printf("Please type another letter or a #. \n");
+    }
+    printf("Bey! \n");*/
+    
+    // 7.10 -- 使用break退出循环
+    /*float length, width;
+    printf("Enter the length of the rectangle:\n");
+    while (scanf("%f", &length) == 1) {
+        printf("Length = %0.2f:\n", length);
+        printf("Enter its width:\n");
+        if (scanf("%f", &width) != 1) {
+            break;
+        }
+        printf("Width = %0.2f: \n", width);
+        printf("Area = %0.2f: \n", length*width);
+    }
+    printf("Done.\n");*/
     
     // 7.9 使用contiune跳过部分循环
     /*sconst float MIN = 0.0f;
