@@ -16,12 +16,18 @@
 
 #define SIZE_10 10
 
+#define SIZE_5 5
+
 int sum(int ar[], int n);
 
 int sump(int *start, int *end);
 
 int data[2] = {100, 200};
 int moredata[2] = {300, 400};
+
+void show_array(const double ar[], int n);
+
+void mult_array(double ar[], int n, double mult);
 
 int main(int argc, const char * argv[]) {
     
@@ -44,9 +50,76 @@ int main(int argc, const char * argv[]) {
      
      10.4 函数、数组和指针
      10.4.1 使用指针形参
+     10.4.2 指针表示法和数组表示法
+     
+     10.5
+     
+     10.6 保护数组中的数据
+     10.6.1 对形式参数使用const
+     10.6.2 const的其他内容
+     
+     10.7 指针和多维数组
+     10.7.1 指向多维数组的指针
      */
     
     // ----------------------------- Code
+    // 10.16
+    int zippo[4][2] = {{2, 4},{6, 8},{1, 3},{5, 7}};
+    int (* pz)[2];
+    pz = zippo;
+    printf("    pz = %p, pz + 1 = %p\n", pz, pz+1);
+    printf("pz[0] = %p, pz[0] + 1 = %p\n", pz[0], pz[0]+1);
+    printf(" *pz = %p, *pz+1 = %p\n", *pz, *pz+1);
+    printf("pz[0][0] = %d\n", pz[0][0]);
+    printf(" *pz[0] = %d\n", *pz[0]);
+    printf(" **pz = %d \n", **pz);
+    printf("    pz[2][1] = %d\n", pz[2][1]);
+    printf("*(*(pz+2)+1) = %d\n", *(*(pz+2)+1));
+    
+    // 10.15
+    /*int zippo[4][2] = {{2,4},{6, 8},{1, 3},{5, 7}};
+    printf(" zippo = %p, zippo + 1 = %p\n", zippo, zippo+1);
+    printf("zippo[0] = %p, zippo[0] + 1 = %p\n", zippo[0], zippo[0] + 1);
+    printf(" *zippo = %p, *zippo + 1 = %p\n",*zippo, *zippo+1);
+    printf("zippo[0][0] = %d\n", zippo[0][0]);
+    printf(" *zippo[0] = %d\n", *zippo[0]);
+    printf(" **zippo = %d\n", **zippo);
+    printf(" zippo[2][1] = %d\n", zippo[2][1]);
+    printf("*(*zippo+2) + 1) = %d\n", *(*(zippo+2)+1));*/
+    
+    // 10.14
+    /*double dip[SIZE_5] = {20.0, 17.66, 8.2, 15.3, 22.22};
+    printf("The original dip array:\n");
+    show_array(dip, SIZE_5);
+    mult_array(dip, SIZE_5, 2.5);
+    printf("The dip array after calling mult_array():\n");
+    show_array(dip, SIZE_5);*/
+    
+    // 10.13
+    /*int urn[5] = {100, 200, 300, 400, 500};
+    int *ptr1, *ptr2, *ptr3;
+    ptr1 = urn;
+    ptr2 = &urn[2];
+    printf("pointer value, dereferenced pointer, pointer address:\n");
+    printf("ptr1 = %p, *ptr1 = %d, &ptr1 = %p\n", ptr1, *ptr1, &ptr1);
+    ptr3 = ptr1+4;
+    printf("\nadding an int to a pointer:\n");
+    printf("ptr1 + 4 = %p, *(ptr1 + 4) = %d\n", ptr1 + 4, *(ptr1 + 4));
+    ptr1++;
+    printf("\nvalues after ptr1++:\n");
+    printf("ptr1 = %p, *ptr1 = %d, &ptr1 =  %p", ptr1, *ptr1, &ptr1);
+    ptr2--;
+    printf("\nvalues after --ptr2:\n");
+    printf("ptr2 = %p, *ptr2 = %d, &ptr2 = %p\n", ptr2, *ptr2, &ptr2);
+    --ptr1;
+    ++ptr2;
+    printf("\nPointers reset to original values:\n");
+    printf("ptr1 = %p, ptr2 = %p\n", ptr1, ptr2);
+    printf("\nsubtracting one pointer from another:\n");
+    printf("ptr2 = %p, ptr1 = %p, ptr2 - ptr1 = %td\n", ptr2, ptr1, ptr2 - ptr1);
+    printf("\nsubtracting an int from a pointer:\n");
+    printf("ptr3 = %p, ptr3 - 2 = %p\n", ptr3, ptr3 - 2);*/
+    
     // 10.12
     /*int *p1, *p2, *p3;
     p1 = p2 = data;
@@ -185,6 +258,21 @@ int main(int argc, const char * argv[]) {
     }*/
     
     return 0;
+}
+
+void mult_array(double ar[], int n, double mult) {
+    int i;
+    for (i = 0; i < n; i++) {
+        ar[i] *= mult;
+    }
+}
+
+void show_array(const double ar[], int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        printf("%8.3f ", ar[i]);
+    }
+    putchar('\n');
 }
 
 int sump(int *start, int *end) {
