@@ -18,6 +18,9 @@
 
 #define SIZE_5 5
 
+#define ROWS 3
+#define COLS 4
+
 int sum(int ar[], int n);
 
 int sump(int *start, int *end);
@@ -28,6 +31,12 @@ int moredata[2] = {300, 400};
 void show_array(const double ar[], int n);
 
 void mult_array(double ar[], int n, double mult);
+
+void sum_rows(int ar[][COLS], int rows);
+void sum_cols(int [][COLS], int);
+int sum2d(int(*ar)[COLS], int rows);
+
+int sum2d_18(int rows, int cols, int ar[rows][cols]);
 
 int main(int argc, const char * argv[]) {
     
@@ -60,11 +69,40 @@ int main(int argc, const char * argv[]) {
      
      10.7 指针和多维数组
      10.7.1 指向多维数组的指针
+     10.7.2 指针的兼容性
+     10.7.3 函数和多维数组
+     
+     10.8 变长数组(VLA)
      */
     
     // ----------------------------- Code
+    // 10.18
+    int i, j;
+    int rs = 3;
+    int cs = 10;
+    int junk[ROWS][COLS] = {{2, 4, 6, 8},{3, 5, 7, 9},{12, 10, 8, 6}};
+    int morejunk[ROWS-1][COLS+2] = {{20, 30, 40, 50, 60, 70},{5, 6, 7, 8, 9, 10}};
+    int varr[rs][cs];
+    for (i = 0; i < rs; i++) {
+        for (j = 0; j < cs; j++) {
+            varr[i][j] = i*j+j;
+        }
+    }
+    printf("3x5 array\n");
+    printf("Sum of all elements = %d \n", sum2d_18(ROWS, COLS, junk));
+    printf("2x6 array\n");
+    printf("Sum of all elements = %d \n", sum2d_18(ROWS-1, COLS+2, morejunk));
+    printf("3x10 VLA\n");
+    printf("Sum of all elements = %d \n", sum2d_18(rs, cs, varr));
+    
+    // 10.17
+    /*int junk[ROWS][COLS] = {{2, 4, 6, 8},{3, 5, 7, 9},{12, 10, 8, 6}};
+    sum_rows(junk, ROWS);
+    sum_cols(junk, ROWS);
+    printf("Sum of all elements = %d \n", sum2d(junk, ROWS));*/
+    
     // 10.16
-    int zippo[4][2] = {{2, 4},{6, 8},{1, 3},{5, 7}};
+    /*int zippo[4][2] = {{2, 4},{6, 8},{1, 3},{5, 7}};
     int (* pz)[2];
     pz = zippo;
     printf("    pz = %p, pz + 1 = %p\n", pz, pz+1);
@@ -74,7 +112,7 @@ int main(int argc, const char * argv[]) {
     printf(" *pz[0] = %d\n", *pz[0]);
     printf(" **pz = %d \n", **pz);
     printf("    pz[2][1] = %d\n", pz[2][1]);
-    printf("*(*(pz+2)+1) = %d\n", *(*(pz+2)+1));
+    printf("*(*(pz+2)+1) = %d\n", *(*(pz+2)+1));*/
     
     // 10.15
     /*int zippo[4][2] = {{2,4},{6, 8},{1, 3},{5, 7}};
@@ -258,6 +296,56 @@ int main(int argc, const char * argv[]) {
     }*/
     
     return 0;
+}
+
+int sum2d_18(int rows, int cols, int ar[rows][cols]) {
+    int r;
+    int c;
+    int tot = 0;
+    for (r = 0; r < rows; r++) {
+        for (c = 0; c < cols; c++) {
+            tot += ar[r][c];
+        }
+    }
+    return tot;
+}
+
+int sum2d(int(*ar)[COLS], int rows) {
+    int r;
+    int c;
+    int tot = 0;
+    for (r = 0; r < rows; r++) {
+        for (c = 0; c < COLS; c++) {
+            tot += ar[r][c];
+        }
+    }
+    return tot;
+}
+
+void sum_cols(int ar[][COLS], int rows) {
+    int r;
+    int c;
+    int tot;
+    for (c = 0; c < COLS; c++) {
+        tot = 0;
+        for (r = 0; r < rows; r++) {
+            tot += ar[r][c];
+        }
+        printf("col %d: sum = %d\n", c, tot);
+    }
+}
+
+void sum_rows(int ar[][COLS], int rows) {
+    int r;
+    int c;
+    int tot;
+    for (r = 0; r < rows; r++) {
+        tot = 0;
+        for (c = 0; c < COLS; c++) {
+            tot += ar[r][c];
+        }
+        printf("row %d: sum = %d\n", r, tot);
+    }
 }
 
 void mult_array(double ar[], int n, double mult) {
