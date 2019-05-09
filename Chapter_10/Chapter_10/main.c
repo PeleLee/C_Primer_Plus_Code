@@ -38,6 +38,10 @@ int sum2d(int(*ar)[COLS], int rows);
 
 int sum2d_18(int rows, int cols, int ar[rows][cols]);
 
+int sum2d_19(const int ar[][COLS], int rows);
+
+int sum_19(const int ar[], int n);
+
 int main(int argc, const char * argv[]) {
     
     // ----------------------------- 摘要
@@ -73,11 +77,28 @@ int main(int argc, const char * argv[]) {
      10.7.3 函数和多维数组
      
      10.8 变长数组(VLA)
+     
+     10.9 复合字面量
+     
+     10.10 关键概念
      */
     
     // ----------------------------- Code
+    // 10.19
+    int total1, total2, total3;
+    int *pt1;
+    int (*pt2)[COLS];
+    pt1 = (int[2]){10, 20};
+    pt2 = (int[2][COLS]){{1, 2, 3, -9},{4, 5, 6, -8}};
+    total1 = sum_19(pt1, 2);
+    total2 = sum2d(pt2, 2);
+    total3 = sum_19((int[]){4, 4, 4, 5, 5, 5}, 6);
+    printf("total1 = %d\n", total1);
+    printf("total2 = %d\n", total2);
+    printf("total3 = %d\n", total3);
+    
     // 10.18
-    int i, j;
+    /*int i, j;
     int rs = 3;
     int cs = 10;
     int junk[ROWS][COLS] = {{2, 4, 6, 8},{3, 5, 7, 9},{12, 10, 8, 6}};
@@ -93,7 +114,7 @@ int main(int argc, const char * argv[]) {
     printf("2x6 array\n");
     printf("Sum of all elements = %d \n", sum2d_18(ROWS-1, COLS+2, morejunk));
     printf("3x10 VLA\n");
-    printf("Sum of all elements = %d \n", sum2d_18(rs, cs, varr));
+    printf("Sum of all elements = %d \n", sum2d_18(rs, cs, varr));*/
     
     // 10.17
     /*int junk[ROWS][COLS] = {{2, 4, 6, 8},{3, 5, 7, 9},{12, 10, 8, 6}};
@@ -296,6 +317,27 @@ int main(int argc, const char * argv[]) {
     }*/
     
     return 0;
+}
+
+int sum2d_19(const int ar[][COLS], int rows) {
+    int r;
+    int c;
+    int tot = 0;
+    for (r = 0; r < rows; r++) {
+        for (c = 0; c < COLS; c++) {
+            tot += ar[r][c];
+        }
+    }
+    return tot;
+}
+
+int sum_19(const int ar[], int n) {
+    int i;
+    int total = 0;
+    for (i = 0; i < n; i++) {
+        total += ar[i];
+    }
+    return total;
 }
 
 int sum2d_18(int rows, int cols, int ar[rows][cols]) {
