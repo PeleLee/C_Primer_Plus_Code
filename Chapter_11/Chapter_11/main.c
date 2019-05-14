@@ -29,6 +29,22 @@
 
 #define SIZE 80
 
+#define SIZE_19 30
+
+#define BUGSIZE 13
+
+#define ANSWER "Grant"
+
+#define SIZE_20 40
+
+#define SIZE_23 80
+
+#define LIM_23 10
+
+#define STOP "quit"
+
+#define LISTSIZE 6
+
 void put1(const char *string) {
     while (*string != '\0') {
         putchar(*string++);
@@ -74,9 +90,87 @@ int main(int argc, const char * argv[]) {
      11.5 字符串函数
      11.5.1 strlen()函数
      11.5.2 strcat()函数
+     11.5.3 strncat()函数
+     11.5.4 strcmp()函数
+     
      */
     
     // ---------------------Code
+    // 11.24
+    const char *list[LISTSIZE] = {"astronomy", "astounding", "astrophysics", "ostracize", "asterism", "astrophobia"};
+    int count = 0;
+    int i;
+    for (i = 0; i < LISTSIZE; i++) {
+        if (strncmp(list[i], "astro", 5) == 0) {
+            printf("Found: %s\n", list[i]);
+            count++;
+        }
+    }
+    printf("The list contained %d words beginning"
+           " with astro.\n", count);
+    
+    // 11.23
+    /*char input[LIM_23][SIZE_23];
+    int ct = 0;
+    printf("Enter up to %d lines (type quit to quit):\n", LIM_23);
+    while (ct < LIM_23 &&
+           s_gets(input[ct], SIZE_23) != NULL &&
+           strcmp(input[ct], STOP) != 0) {
+        ct++;
+    }
+    printf("%d strings entered\n", ct);*/
+    
+    // 11.22
+    /*printf("strcmp(\"A\", \"A\") is ");
+    printf("%d\n", strcmp("A", "A"));
+    printf("strcmp(\"A\", \"B\") is ");
+    printf("%d\n", strcmp("A", "B"));
+    printf("strcmp(\"B\", \"A\") is ");
+    printf("%d\n", strcmp("B", "A"));
+    printf("strcmp(\"C\", \"A\") is ");
+    printf("%d\n", strcmp("C", "A"));
+    printf("strcmp(\"Z\", \"a\") is ");
+    printf("%d\n", strcmp("Z", "a"));
+    printf("strcmp(\"apples\", \"apple\") is ");
+    printf("%d\n", strcmp("apples", "apple"));*/
+    
+    // 11.21
+    /*char try[SIZE];
+    puts("Who is buried in Grant's tomb?");
+    s_gets(try, SIZE_20);
+    while (strcmp(try, ANSWER) != 0) {
+        puts("No, that's wrong. Try again.");
+        s_gets(try, SIZE);
+    }
+    puts("That's right!");*/
+    
+    // 11.20
+    /*char try[SIZE];
+    puts("Who is buried in Grant's tomb?");
+    s_gets(try, SIZE_20);
+    while (try != ANSWER) {
+        puts("No, that's wrong. Try again.");
+        s_gets(try, SIZE);
+    }
+    puts("That's right!");*/
+    
+    // 11.19
+    /*char flower[SIZE_19];
+    char addon[] = "s smell like old shoes.";
+    char bug[BUGSIZE];
+    int available;
+    puts("What is your favorite flower?");
+    s_gets(flower, SIZE_19);
+    if ((strlen(addon) + strlen(flower) + 1) <= SIZE_19) {
+        strcat(flower, addon);
+    }
+    puts(flower);
+    puts("What is your favorite bug?");
+    s_gets(bug, BUGSIZE);
+    available = BUGSIZE - strlen(bug) - 1;
+    strncat(bug, addon, available);
+    puts(bug);*/
+    
     // 11.18
     /*char flower[SIZE];
     char addon[] = "s smell like old shoes.";
