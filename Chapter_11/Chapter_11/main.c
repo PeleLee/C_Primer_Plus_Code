@@ -45,6 +45,22 @@
 
 #define LISTSIZE 6
 
+#define SIZE_25 40
+
+#define LIM_25 5
+
+#define WORDS "beast"
+
+#define SIZE_26 40
+
+#define SIZE_27 40
+
+#define TARGSIZE 7
+
+#define LIM_27 5
+
+#define MAX 20
+
 void put1(const char *string) {
     while (*string != '\0') {
         putchar(*string++);
@@ -92,12 +108,76 @@ int main(int argc, const char * argv[]) {
      11.5.2 strcat()函数
      11.5.3 strncat()函数
      11.5.4 strcmp()函数
-     
+     11.5.5 strcpy()和strncpy()
+     11.5.6 sprintf()函数
+     11.5.7 其他字符串函数
      */
     
     // ---------------------Code
+    // 11.28
+    /*char first[MAX];
+    char last [MAX];
+    char formal[2*MAX+10];
+    double prize;
+    puts("Enter your first name:");
+    s_gets(first, MAX);
+    puts("Enter your last name:");
+    s_gets(last, MAX);
+    puts("Enter your prize money:");
+    scanf("%lf", &prize);
+    sprintf(formal, "%s, %-19s: $%6.2f\n", last, first, prize);
+    puts(formal);*/
+    
+    // 11.27
+    /*char qwords[LIM_27][TARGSIZE];
+    char temp[SIZE_27];
+    int i = 0;
+    printf("Enter %d words beginning with q:\n", LIM_27);
+    while (i < LIM_27 && s_gets(temp, SIZE_27)) {
+        if (temp[0] != 'q') {
+            printf("%s doesn't begin with q!\n", temp);
+        }
+        else {
+            strncpy(qwords[i], temp, TARGSIZE-1);
+            i++;
+        }
+    }
+    puts("Here are the words accepted:");
+    for (i = 0; i < LIM_27; i++) {
+        puts(qwords[i]);
+    }*/
+    
+    // 11.26
+    /*const char*orig = WORDS;
+    char copy[SIZE_26] = "Be the best that you can be.";
+    char *ps;
+    puts(orig);
+    puts(copy);
+    ps = strcpy(copy+7, orig);
+    puts(copy);
+    puts(ps);*/
+    
+    // 11.25
+    /*char qwords[LIM_25][SIZE_25];
+    char temp[SIZE_25];
+    int i = 0;
+    printf("Enter %d words beginning with q:\n", LIM_25);
+    while (i < LIM_25 && s_gets(temp, SIZE_25)) {
+        if (temp[0] != 'q') {
+            printf("%s doesn't begin with q!\n", temp);
+        }
+        else {
+            strcpy(qwords[i], temp);
+            i++;
+        }
+    }
+    puts("Here are the words accepted:");
+    for (i = 0; i < LIM_25; i++) {
+        puts(qwords[i]);
+    }*/
+    
     // 11.24
-    const char *list[LISTSIZE] = {"astronomy", "astounding", "astrophysics", "ostracize", "asterism", "astrophobia"};
+    /*const char *list[LISTSIZE] = {"astronomy", "astounding", "astrophysics", "ostracize", "asterism", "astrophobia"};
     int count = 0;
     int i;
     for (i = 0; i < LISTSIZE; i++) {
@@ -107,7 +187,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     printf("The list contained %d words beginning"
-           " with astro.\n", count);
+           " with astro.\n", count);*/
     
     // 11.23
     /*char input[LIM_23][SIZE_23];
