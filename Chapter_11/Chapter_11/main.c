@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
 
 #define MSG "I am a symbolic string constant."
 #define MAXLENGTH 81
@@ -61,6 +63,14 @@
 
 #define MAX 20
 
+#define SIZE_29 81
+
+#define LIM_29 20
+
+#define HALT ""
+
+#define LIM_30 81
+
 void put1(const char *string) {
     while (*string != '\0') {
         putchar(*string++);
@@ -80,6 +90,12 @@ int put2(const char *string) {
 void fit(char *, unsigned int);
 
 char *s_gets(char *st, int n);
+
+void stsrt(char *strings[], int num);
+
+void ToUpper(char *);
+
+int PunctCount(const char*);
 
 int main(int argc, const char * argv[]) {
     // ---------------------摘要
@@ -111,9 +127,72 @@ int main(int argc, const char * argv[]) {
      11.5.5 strcpy()和strncpy()
      11.5.6 sprintf()函数
      11.5.7 其他字符串函数
+     
+     11.6 字符串事例:字符串排序
+     11.6.1 排序指针而非字符串
+     11.6.2 选择排序算法
+     
+     11.7 ctype.h字符函数和字符串
+     
+     11.8 命令行参数
+     11.8.1 集成环境中的命令行参数
+     11.8.2 Macintosh中的命令行参数
+     
+     11.9 把字符串转换为数字
      */
     
     // ---------------------Code
+    // 11.32
+    int i, times;
+    if (argc < 2 || (times = atoi(argv[1])) < 1) {
+        printf("Usage: %s positivenumber\n", argv[0]);
+    }
+    else {
+        for (i = 0; i < times; i++) {
+            puts("Hello, good looking!");
+        }
+    }
+    
+    // 11.31
+    /*int count;
+    printf("The command line has %d arguments:\n", argc-1);
+    for (count = 1; count < argc; count++) {
+        printf("%d: %s \n", count, argv[count]);
+    }
+    printf("\n");*/
+    
+    // 11.30
+    /*char line[LIM_30];
+    char *find;
+    puts("Please enter a line:");
+    fgets(line, LIM_30, stdin);
+    find = strchr(line, '\n');
+    if (find) {
+        *find = '\0';
+    }
+    ToUpper(line);
+    puts(line);
+    printf("That line has %d punctuation characters. \n", PunctCount(line));*/
+    
+    // 11.29
+    /*char input[LIM_29][SIZE_29];
+    char *ptstr[LIM_29];
+    int ct = 0;
+    int k;
+    printf("Input up to %d lines, and I will sort them.\n", LIM_29);
+    printf("To stop, press the Enter key at a line's start.\n");
+    while (ct < LIM_29 &&
+           s_gets(input[ct], SIZE_29) != NULL &&
+           input[ct][0] != '\0') {
+        ptstr[ct] = input[ct];
+        ct++;
+    }
+    stsrt(ptstr, ct);
+    puts("\nHere's the sorted list:\n");
+    for (k = 0; k < ct; k++) {
+        puts(ptstr[k]);
+    }*/
+    
     // 11.28
     /*char first[MAX];
     char last [MAX];
@@ -412,6 +491,38 @@ int main(int argc, const char * argv[]) {
     puts(words);*/
     
     return 0;
+}
+
+int PunctCount(const char*str) {
+    int ct = 0;
+    while (*str) {
+        if (ispunct(*str)) {
+            ct++;
+        }
+        str++;
+    }
+    return ct;
+}
+
+void ToUpper(char *str) {
+    while (*str) {
+        *str = toupper(*str);
+        str++;
+    }
+}
+
+void stsrt(char *strings[], int num) {
+    char *temp;
+    int top, seek;
+    for (top = 0; top < num-1; top++) {
+        for (seek = top+1; seek < num; seek++) {
+            if (strcmp(strings[top], strings[seek]) > 0) {
+                temp = strings[top];
+                strings[top] = strings[seek];
+                strings[seek] = temp;
+            }
+        }
+    }
 }
 
 char *s_gets(char *st, int n) {
