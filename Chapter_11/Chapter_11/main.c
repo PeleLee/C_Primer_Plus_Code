@@ -71,6 +71,8 @@
 
 #define LIM_30 81
 
+#define LIM_33 30
+
 void put1(const char *string) {
     while (*string != '\0') {
         putchar(*string++);
@@ -139,11 +141,29 @@ int main(int argc, const char * argv[]) {
      11.8.2 Macintosh中的命令行参数
      
      11.9 把字符串转换为数字
+     
+     11.10 关键概念
+     
+     11.11 本章小结
      */
     
     // ---------------------Code
+    // 11.33
+    char number[LIM_33];
+    char *end;
+    long value;
+    puts("Enter a number (empty line to quit):");
+    while (s_gets(number, LIM_33) && number[0] != '\0') {
+        value = strtol(number, &end, 10);
+        printf("base 10 input, base 10 output: %ld, stopped at %s(%d)\n", value, end, *end);
+        value = strtol(number, &end, 16);
+        printf("base 16 input, base 10 output: %ld, stopped at %s(%d)\n", value, end, *end);
+        puts("Next number:");
+    }
+    puts("Bye!\n");
+    
     // 11.32
-    int i, times;
+    /*int i, times;
     if (argc < 2 || (times = atoi(argv[1])) < 1) {
         printf("Usage: %s positivenumber\n", argv[0]);
     }
@@ -151,7 +171,7 @@ int main(int argc, const char * argv[]) {
         for (i = 0; i < times; i++) {
             puts("Hello, good looking!");
         }
-    }
+    }*/
     
     // 11.31
     /*int count;
