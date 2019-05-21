@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/ilreldi/Documents/C/C_Primer_Plus_Code/Chapter_13/cat.rtf"
+            argument = "/Users/ilreldi/Documents/C/C_Primer_Plus_Code/Chapter_13/cat.txt"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -72,7 +72,7 @@
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
@@ -86,6 +86,12 @@
             ReferencedContainer = "container:Chapter_13.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/ilreldi/Documents/C/C_Primer_Plus_Code/Chapter_13/cat.txt"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
